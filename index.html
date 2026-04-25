@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>苏轼《定风波》· 微课配套学习站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3efe7;
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'SimHei', serif;
+            padding: 20px 15px 40px;
+            color: #2c2418;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fffef7;
+            border-radius: 32px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #e2d8ca;
+        }
+
+        /* 头部 */
+        .header {
+            background: linear-gradient(135deg, #d9c7a7 0%, #b89a6e 100%);
+            padding: 32px 20px;
+            text-align: center;
+            color: white;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* 选项卡导航 */
+        .tabs {
+            display: flex;
+            background: #fff9f0;
+            border-bottom: 1px solid #e2d8ca;
+            padding: 0 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 16px 10px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #6b5a48;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: #9b7b54;
+            border-bottom-color: #b89a6e;
+            background: #fffef7;
+        }
+        .tab-btn:hover {
+            background: #f5efe5;
+        }
+
+        /* 内容区 */
+        .tab-content {
+            display: none;
+            padding: 32px 30px;
+            animation: fade 0.2s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 通用样式 */
+        h2 {
+            font-size: 1.8rem;
+            color: #9b7b54;
+            border-left: 5px solid #cbb181;
+            padding-left: 18px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: #b28b5e;
+            margin: 20px 0 12px 0;
+        }
+        .poem-block {
+            background: #fefaf5;
+            border-radius: 24px;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-left: 6px solid #d9c7a7;
+        }
+        .poem-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #7a5a3a;
+            margin-bottom: 12px;
+        }
+        .poem-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            white-space: pre-line;
+            font-family: inherit;
+        }
+        .translation {
+            background: #f9f5ed;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 15px 0;
+            font-size: 1rem;
+            color: #4a3b2c;
+        }
+
+        /* 习题卡片 */
+        .question-card {
+            background: #fefcf8;
+            border: 1px solid #e8dfd1;
+            border-radius: 24px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 14px;
+            color: #3e3324;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .option input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .feedback {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: #f9f5ed;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .feedback.show {
+            display: block;
+        }
+        .feedback.correct {
+            background: #e6f0e6;
+            border-left: 4px solid #6f9e6f;
+        }
+        .feedback.wrong {
+            background: #fdeaea;
+            border-left: 4px solid #c77a7a;
+        }
+        .btn-check {
+            background: #b89a6e;
+            border: none;
+            padding: 6px 20px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+        .btn-check:hover {
+            background: #9b7b54;
+        }
+        .answer-note {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #5c4b32;
+            background: #fff9f0;
+            padding: 12px;
+            border-radius: 16px;
+        }
+
+        /* 卡片式诗词（拓展阅读复用） */
+        .poem-card {
+            background: #fefcf8;
+            border: 1px solid #e8dfd1;
+            border-radius: 28px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+        .poem-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #7a5a3a;
+            margin-bottom: 8px;
+        }
+        .poem-author {
+            font-size: 1rem;
+            color: #b28b5e;
+            margin-bottom: 16px;
+        }
+        .poem-full {
+            font-size: 1rem;
+            line-height: 1.7;
+            white-space: pre-line;
+            background: #f9f5ed;
+            padding: 16px;
+            border-radius: 20px;
+            margin: 12px 0;
+        }
+        .poem-note {
+            font-size: 0.95rem;
+            color: #5c4b32;
+            padding: 12px 16px;
+            border-left: 4px solid #d9c7a7;
+            background: #fff9f0;
+            border-radius: 16px;
+        }
+        .timeline {
+            padding-left: 20px;
+            border-left: 2px solid #d4c3aa;
+            margin: 20px 0;
+        }
+        .event {
+            margin-bottom: 18px;
+        }
+        .year {
+            font-weight: bold;
+            color: #9b7b54;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 0.8rem;
+            color: #9b8a72;
+            border-top: 1px solid #ede3d4;
+            background: #fefcf8;
+        }
+        @media (max-width: 650px) {
+            .tab-content {
+                padding: 20px 18px;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .tab-btn {
+                font-size: 1rem;
+                padding: 12px 5px;
+            }
+            .poem-text, .options {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>《定风波》· 微课学习站</h1>
+        <p>课前预习 · 课后巩固 · 拓展阅读 | 人生风雨，从容而行</p>
+    </div>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="pre">📖 课前预习</button>
+        <button class="tab-btn" data-tab="post">✍️ 课后习题</button>
+        <button class="tab-btn" data-tab="extra">🌿 拓展阅读</button>
+    </div>
+
+    <!-- ================= 课前预习板块 ================= -->
+    <div id="pre" class="tab-content active">
+        <h2>📜 原词与预习自测</h2>
+        <div class="poem-block">
+            <div class="poem-title">《定风波·莫听穿林打叶声》</div>
+            <div class="poem-text">
+                三月七日，沙湖道中遇雨，雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此词。<br><br>
+                莫听穿林打叶声，何妨吟啸且徐行。<br>
+                竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。<br>
+                料峭春风吹酒醒，微冷，山头斜照却相迎。<br>
+                回首向来萧瑟处，归去，也无风雨也无晴。
+            </div>
+            <div class="translation">
+                <strong>🌾 整体翻译：</strong><br>
+                不用注意那穿林打叶的雨声，不妨高声吟唱从容而行。拄竹杖穿草鞋，轻便胜过骑马，有什么可怕的？披着蓑衣任它风吹雨打，照样过一生。春风微寒吹醒我的酒意，身上略有寒意，山头上却已露出斜阳。回头望一眼刚才风雨萧瑟的地方，信步归去，不管它是风雨还是天晴。
+            </div>
+        </div>
+
+        <h3>📝 预习自测题（点击选项查看对错与解析）</h3>
+        <!-- 预习题1 -->
+        <div class="question-card" id="pre1">
+            <div class="question-text">1. 词中“莫听穿林打叶声，何妨吟啸且徐行”表现了苏轼什么样的心态？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="pre1" value="A"> A. 消极躲避</label>
+                <label class="option"><input type="radio" name="pre1" value="B"> B. 从容豁达，不为外物所扰</label>
+                <label class="option"><input type="radio" name="pre1" value="C"> C. 愤怒反抗</label>
+                <label class="option"><input type="radio" name="pre1" value="D"> D. 急于避雨</label>
+            </div>
+            <button class="btn-check" data-q="pre1">核对答案</button>
+            <div class="feedback" id="fb-pre1"></div>
+        </div>
+        <!-- 预习题2 -->
+        <div class="question-card" id="pre2">
+            <div class="question-text">2. “一蓑烟雨任平生”中的“烟雨”象征什么？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="pre2" value="A"> A. 自然美景</label>
+                <label class="option"><input type="radio" name="pre2" value="B"> B. 人生坎坷与风雨</label>
+                <label class="option"><input type="radio" name="pre2" value="C"> C. 官场得意</label>
+                <label class="option"><input type="radio" name="pre2" value="D"> D. 归隐田园</label>
+            </div>
+            <button class="btn-check" data-q="pre2">核对答案</button>
+            <div class="feedback" id="fb-pre2"></div>
+        </div>
+        <!-- 预习题3 -->
+        <div class="question-card" id="pre3">
+            <div class="question-text">3. 下片中“山头斜照却相迎”的描写暗示了什么哲理？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="pre3" value="A"> A. 困境中总会有希望和转机</label>
+                <label class="option"><input type="radio" name="pre3" value="B"> B. 夕阳无限好</label>
+                <label class="option"><input type="radio" name="pre3" value="C"> C. 天气变化无常</label>
+                <label class="option"><input type="radio" name="pre3" value="D"> D. 不要相信晴天</label>
+            </div>
+            <button class="btn-check" data-q="pre3">核对答案</button>
+            <div class="feedback" id="fb-pre3"></div>
+        </div>
+        <!-- 预习题4 -->
+        <div class="question-card" id="pre4">
+            <div class="question-text">4. 从“也无风雨也无晴”可以看出苏轼怎样的人生境界？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="pre4" value="A"> A. 悲观看待一切</label>
+                <label class="option"><input type="radio" name="pre4" value="B"> B. 超然物外，宠辱不惊</label>
+                <label class="option"><input type="radio" name="pre4" value="C"> C. 追求功名利禄</label>
+                <label class="option"><input type="radio" name="pre4" value="D"> D. 逃避现实</label>
+            </div>
+            <button class="btn-check" data-q="pre4">核对答案</button>
+            <div class="feedback" id="fb-pre4"></div>
+        </div>
+    </div>
+
+    <!-- ================= 课后习题板块 ================= -->
+    <div id="post" class="tab-content">
+        <h2>✍️ 课后巩固练习</h2>
+        <div class="question-card">
+            <div class="question-text">1. 下列对《定风波》词句理解不正确的一项是（     ）</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="post1" value="A"> A. “穿林打叶声”暗指人生中的风雨坎坷。</label>
+                <label class="option"><input type="radio" name="post1" value="B"> B. “竹杖芒鞋轻胜马”表现了苏轼对简朴生活的自适。</label>
+                <label class="option"><input type="radio" name="post1" value="C"> C. “山头斜照却相迎”只写景，没有深层含义。</label>
+                <label class="option"><input type="radio" name="post1" value="D"> D. “也无风雨也无晴”体现了豁达的人生境界。</label>
+            </div>
+            <button class="btn-check" data-q="post1">核对答案</button>
+            <div class="feedback" id="fb-post1"></div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">2. 本词主要运用了什么表现手法？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="post2" value="A"> A. 借景抒情，以自然风雨喻人生际遇</label>
+                <label class="option"><input type="radio" name="post2" value="B"> B. 托物言志</label>
+                <label class="option"><input type="radio" name="post2" value="C"> C. 直接抒情</label>
+                <label class="option"><input type="radio" name="post2" value="D"> D. 对比衬托</label>
+            </div>
+            <button class="btn-check" data-q="post2">核对答案</button>
+            <div class="feedback" id="fb-post2"></div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">3. 苏轼在黄州期间还创作了哪部名篇？（文学常识）</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="post3" value="A"> A. 《念奴娇·赤壁怀古》</label>
+                <label class="option"><input type="radio" name="post3" value="B"> B. 《望海潮》</label>
+                <label class="option"><input type="radio" name="post3" value="C"> C. 《雨霖铃》</label>
+                <label class="option"><input type="radio" name="post3" value="D"> D. 《永遇乐·京口北固亭怀古》</label>
+            </div>
+            <button class="btn-check" data-q="post3">核对答案</button>
+            <div class="feedback" id="fb-post3"></div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">4. “谁怕？一蓑烟雨任平生”一句体现了苏轼怎样的精神核心？</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="post4" value="A"> A. 无所畏惧、旷达乐观</label>
+                <label class="option"><input type="radio" name="post4" value="B"> B. 孤傲自赏</label>
+                <label class="option"><input type="radio" name="post4" value="C"> C. 消极避世</label>
+                <label class="option"><input type="radio" name="post4" value="D"> D. 渴望归隐</label>
+            </div>
+            <button class="btn-check" data-q="post4">核对答案</button>
+            <div class="feedback" id="fb-post4"></div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">5. 下列对这首词赏析有误的一项是（     ）</div>
+            <div class="options">
+                <label class="option"><input type="radio" name="post5" value="A"> A. 词人借“穿林打叶”之景自然引出对人生风雨的思考。</label>
+                <label class="option"><input type="radio" name="post5" value="B"> B. “吟啸且徐行”表现了一种从容不迫的人生态度。</label>
+                <label class="option"><input type="radio" name="post5" value="C"> C. “微冷”写出了词人对天气变化的敏感与抱怨。</label>
+                <label class="option"><input type="radio" name="post5" value="D"> D. 全词即景抒情，将日常小事升华为人生哲理。</label>
+            </div>
+            <button class="btn-check" data-q="post5">核对答案</button>
+            <div class="feedback" id="fb-post5"></div>
+        </div>
+    </div>
+
+    <!-- ================= 拓展阅读板块（生平+诗词+网站资源） ================= -->
+    <div id="extra" class="tab-content">
+        <h2>🌿 拓展阅读 · 苏轼生平与诗词</h2>
+        <div class="poem-block">
+            <div class="poem-title">千古东坡</div>
+            <div class="poem-text">
+                苏轼（1037-1101），字子瞻，号东坡居士。北宋文豪，诗词文书画俱佳。一生坎坷，却将苦难化为旷达。代表作《定风波》《念奴娇·赤壁怀古》《水调歌头》等。
+            </div>
+        </div>
+        <div class="timeline">
+            <div class="event"><span class="year">1037年</span> 生于眉山</div>
+            <div class="event"><span class="year">1057年</span> 进士及第，名动京师</div>
+            <div class="event"><span class="year">1079年</span> 乌台诗案，贬谪黄州</div>
+            <div class="event"><span class="year">1082年</span> 作《定风波》《赤壁赋》</div>
+            <div class="event"><span class="year">1094年</span> 贬惠州，再贬儋州</div>
+            <div class="event"><span class="year">1101年</span> 北归途中病逝常州</div>
+        </div>
+
+        <h3>📖 经典诗词选读（附解析）</h3>
+        <!-- 望江南 -->
+        <div class="poem-card">
+            <div class="poem-name">《望江南·春未老》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">
+                春未老，风细柳斜斜。试上超然台上看，半壕春水一城花。烟雨暗千家。<br>
+                寒食后，酒醒却咨嗟。休对故人思故国，且将新火试新茶。诗酒趁年华。
+            </div>
+            <div class="poem-note">解析：登超然台所见暮春景色，虽有乡愁却自我宽解——“诗酒趁年华”，珍惜当下，豪放旷达。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《饮湖上初晴后雨》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">水光潋滟晴方好，山色空蒙雨亦奇。欲把西湖比西子，淡妆浓抹总相宜。</div>
+            <div class="poem-note">解析：西湖晴雨皆美，以美人喻西湖，新颖别致，体现诗人对自然的热爱。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《题西林壁》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。</div>
+            <div class="poem-note">解析：借庐山说理，启示人们跳出局限才能看清真相，充满哲理。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《惠崇春江晚景》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">竹外桃花三两枝，春江水暖鸭先知。蒌蒿满地芦芽短，正是河豚欲上时。</div>
+            <div class="poem-note">解析：题画诗，捕捉早春生机，“春江水暖鸭先知”成为千古名句。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《定风波·莫听穿林打叶声》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">莫听穿林打叶声，何妨吟啸且徐行……一蓑烟雨任平生……也无风雨也无晴。</div>
+            <div class="poem-note">解析：核心人生观——不为外物所扰，顺境逆境皆从容，微课重点讲解。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《水调歌头·明月几时有》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">但愿人长久，千里共婵娟。</div>
+            <div class="poem-note">解析：中秋词绝唱，将人间悲欢与自然圆缺融合，旷达而有情致。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《念奴娇·赤壁怀古》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">大江东去，浪淘尽，千古风流人物……</div>
+            <div class="poem-note">解析：豪放词巅峰，气势磅礴，人生如梦却依然豪迈。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《六月二十日夜渡海》</div>
+            <div class="poem-author">宋·苏轼</div>
+            <div class="poem-full">九死南荒吾不恨，兹游奇绝冠平生。</div>
+            <div class="poem-note">解析：从海南遇赦北归，将苦难视为奇绝经历，晚年境界超然。</div>
+        </div>
+        <div style="background:#fefaf5; border-radius: 24px; padding: 20px; margin: 20px 0; text-align: center;">
+            🌟 本拓展资源与微课《定风波》配套，扫码即可访问全站。含完整生平、诗词赏析及习题自测。
+        </div>
+    </div>
+    <div class="footer">
+        《定风波》微课配套学习站 · 文工协作全链融学 | 预习+练习+拓展 一站式成长
+    </div>
+</div>
+
+<script>
+    // 通用交互：点击“核对答案”显示对应题目的答案和解析
+    const answerMap = {
+        // 预习
+        pre1: { correct: "B", explanation: "解析：“莫听”“何妨”表现了对风雨的从容与豁达，不为所扰。" },
+        pre2: { correct: "B", explanation: "解析：“烟雨”一语双关，既指自然风雨，也喻仕途坎坷、人生困境。" },
+        pre3: { correct: "A", explanation: "解析：斜阳相迎暗示困境中必有转机，体现辩证思维。" },
+        pre4: { correct: "B", explanation: "解析：无风雨无晴，是宠辱不惊、超然物外的精神境界。" },
+        // 课后
+        post1: { correct: "C", explanation: "解析：“山头斜照却相迎”既有写景又有象征意义，暗示希望，因此C项错误。" },
+        post2: { correct: "A", explanation: "解析：全词借途中遇雨之景，抒发对人生风雨的感悟，属于借景抒情。" },
+        post3: { correct: "A", explanation: "解析：《念奴娇·赤壁怀古》与《赤壁赋》同作于黄州贬所。" },
+        post4: { correct: "A", explanation: "解析：“谁怕”“任平生”直接展现出无所畏惧、乐观旷达的核心精神。" },
+        post5: { correct: "C", explanation: "解析：“微冷”是写实，并无抱怨之意，整体情绪仍然是坦然从容的。" }
+    };
+
+    document.querySelectorAll('.btn-check').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const qId = this.getAttribute('data-q');
+            const selectedRadio = document.querySelector(`input[name="${qId}"]:checked`);
+            const feedbackDiv = document.getElementById(`fb-${qId}`);
+            if (!feedbackDiv) return;
+            if (!selectedRadio) {
+                feedbackDiv.innerHTML = '<span>⚠️ 请先选择一个选项。</span>';
+                feedbackDiv.classList.add('show');
+                feedbackDiv.classList.remove('correct', 'wrong');
+                return;
+            }
+            const userValue = selectedRadio.value;
+            const correctInfo = answerMap[qId];
+            if (correctInfo) {
+                const isCorrect = (userValue === correctInfo.correct);
+                const correctLetter = correctInfo.correct;
+                let answerText = '';
+                if (qId.startsWith('pre')) {
+                    const optMap = {A:'A',B:'B',C:'C',D:'D'};
+                    answerText = `正确答案：${correctLetter}。${correctInfo.explanation}`;
+                } else {
+                    answerText = `正确答案：${correctLetter}。${correctInfo.explanation}`;
+                }
+                feedbackDiv.innerHTML = isCorrect ? `✅ 回答正确！ ${answerText}` : `❌ 回答错误。 ${answerText}`;
+                feedbackDiv.classList.add('show');
+                feedbackDiv.classList.remove('correct', 'wrong');
+                if (isCorrect) feedbackDiv.classList.add('correct');
+                else feedbackDiv.classList.add('wrong');
+            } else {
+                feedbackDiv.innerHTML = '暂未配置答案，请参考老师讲解。';
+                feedbackDiv.classList.add('show');
+            }
+        });
+    });
+
+    // 选项卡切换
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabBtns.forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
