@@ -28,7 +28,6 @@
             border: 1px solid #e2d8ca;
         }
 
-        /* 头部 */
         .header {
             background: linear-gradient(135deg, #d9c7a7 0%, #b89a6e 100%);
             padding: 32px 20px;
@@ -47,7 +46,6 @@
             font-style: italic;
         }
 
-        /* 选项卡导航 */
         .tabs {
             display: flex;
             background: #fff9f0;
@@ -76,7 +74,6 @@
             background: #f5efe5;
         }
 
-        /* 内容区 */
         .tab-content {
             display: none;
             padding: 32px 30px;
@@ -90,7 +87,6 @@
             to { opacity: 1; }
         }
 
-        /* 通用样式 */
         h2 {
             font-size: 1.8rem;
             color: #9b7b54;
@@ -128,8 +124,9 @@
             border-radius: 20px;
             padding: 16px 20px;
             margin: 15px 0;
-            font-size: 1rem;
+            font-size: 1.1rem;   /* 字号加大 */
             color: #4a3b2c;
+            line-height: 1.7;
         }
 
         /* 习题卡片 */
@@ -206,7 +203,48 @@
             border-radius: 16px;
         }
 
-        /* 卡片式诗词（拓展阅读复用） */
+        /* 拓展阅读专用样式（原篇幅） */
+        .bio-section {
+            margin-bottom: 40px;
+        }
+        .bio-stage {
+            background: #fff9f0;
+            padding: 18px 24px;
+            border-radius: 24px;
+            margin-top: 20px;
+            border-left: 4px solid #cbb181;
+        }
+        .bio-stage h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #d4c3aa;
+            margin: 20px 0 30px;
+        }
+        .event {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -38px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: #b28b5e;
+            border-radius: 50%;
+            border: 2px solid #fffef7;
+            box-shadow: 0 0 0 2px #b28b5e;
+        }
+        .year {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #9b7b54;
+        }
         .poem-card {
             background: #fefcf8;
             border: 1px solid #e8dfd1;
@@ -223,7 +261,7 @@
         .poem-author {
             font-size: 1rem;
             color: #b28b5e;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .poem-full {
             font-size: 1rem;
@@ -242,20 +280,6 @@
             background: #fff9f0;
             border-radius: 16px;
         }
-        .timeline {
-            padding-left: 20px;
-            border-left: 2px solid #d4c3aa;
-            margin: 20px 0;
-        }
-        .event {
-            margin-bottom: 18px;
-        }
-        .year {
-            font-weight: bold;
-            color: #9b7b54;
-            font-size: 1.1rem;
-        }
-
         .footer {
             text-align: center;
             padding: 24px;
@@ -278,6 +302,9 @@
             .poem-text, .options {
                 font-size: 0.95rem;
             }
+            .translation {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -295,9 +322,9 @@
 
     <!-- ================= 课前预习板块 ================= -->
     <div id="pre" class="tab-content active">
-        <h2>📜 原词与预习自测</h2>
+        <!-- 已删除“原词与预习自测”标题，直接展示原词 -->
         <div class="poem-block">
-            <div class="poem-title">《定风波·莫听穿林打叶声》</div>
+            <div class="poem-title">《定风波·莫听穿林打叶声》 宋·苏轼</div>
             <div class="poem-text">
                 三月七日，沙湖道中遇雨，雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此词。<br><br>
                 莫听穿林打叶声，何妨吟啸且徐行。<br>
@@ -307,7 +334,8 @@
             </div>
             <div class="translation">
                 <strong>🌾 整体翻译：</strong><br>
-                不用注意那穿林打叶的雨声，不妨高声吟唱从容而行。拄竹杖穿草鞋，轻便胜过骑马，有什么可怕的？披着蓑衣任它风吹雨打，照样过一生。春风微寒吹醒我的酒意，身上略有寒意，山头上却已露出斜阳。回头望一眼刚才风雨萧瑟的地方，信步归去，不管它是风雨还是天晴。
+                不用注意那穿林打叶的雨声，不妨高声吟唱从容而行。拄竹杖穿草鞋，轻便胜过骑马，有什么可怕的？披着蓑衣任它风吹雨打，照样过一生。<br>
+                春风微寒吹醒我的酒意，身上略有寒意，山头上却已露出斜阳。回头望一眼刚才风雨萧瑟的地方，信步归去，不管它是风雨还是天晴。
             </div>
         </div>
 
@@ -365,7 +393,20 @@
     <!-- ================= 课后习题板块 ================= -->
     <div id="post" class="tab-content">
         <h2>✍️ 课后巩固练习</h2>
-        <div class="question-card">
+        <!-- 添加原词，与课前预习排版一致，无翻译 -->
+        <div class="poem-block">
+            <div class="poem-title">《定风波·莫听穿林打叶声》 宋·苏轼</div>
+            <div class="poem-text">
+                三月七日，沙湖道中遇雨，雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此词。<br><br>
+                莫听穿林打叶声，何妨吟啸且徐行。<br>
+                竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。<br>
+                料峭春风吹酒醒，微冷，山头斜照却相迎。<br>
+                回首向来萧瑟处，归去，也无风雨也无晴。
+            </div>
+            <!-- 无翻译 -->
+        </div>
+
+        <div class="question-card" id="post1">
             <div class="question-text">1. 下列对《定风波》词句理解不正确的一项是（     ）</div>
             <div class="options">
                 <label class="option"><input type="radio" name="post1" value="A"> A. “穿林打叶声”暗指人生中的风雨坎坷。</label>
@@ -376,7 +417,7 @@
             <button class="btn-check" data-q="post1">核对答案</button>
             <div class="feedback" id="fb-post1"></div>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="post2">
             <div class="question-text">2. 本词主要运用了什么表现手法？</div>
             <div class="options">
                 <label class="option"><input type="radio" name="post2" value="A"> A. 借景抒情，以自然风雨喻人生际遇</label>
@@ -387,7 +428,7 @@
             <button class="btn-check" data-q="post2">核对答案</button>
             <div class="feedback" id="fb-post2"></div>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="post3">
             <div class="question-text">3. 苏轼在黄州期间还创作了哪部名篇？（文学常识）</div>
             <div class="options">
                 <label class="option"><input type="radio" name="post3" value="A"> A. 《念奴娇·赤壁怀古》</label>
@@ -398,7 +439,7 @@
             <button class="btn-check" data-q="post3">核对答案</button>
             <div class="feedback" id="fb-post3"></div>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="post4">
             <div class="question-text">4. “谁怕？一蓑烟雨任平生”一句体现了苏轼怎样的精神核心？</div>
             <div class="options">
                 <label class="option"><input type="radio" name="post4" value="A"> A. 无所畏惧、旷达乐观</label>
@@ -409,7 +450,7 @@
             <button class="btn-check" data-q="post4">核对答案</button>
             <div class="feedback" id="fb-post4"></div>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="post5">
             <div class="question-text">5. 下列对这首词赏析有误的一项是（     ）</div>
             <div class="options">
                 <label class="option"><input type="radio" name="post5" value="A"> A. 词人借“穿林打叶”之景自然引出对人生风雨的思考。</label>
@@ -422,79 +463,115 @@
         </div>
     </div>
 
-    <!-- ================= 拓展阅读板块（生平+诗词+网站资源） ================= -->
+    <!-- ================= 拓展阅读板块（原篇幅和排版） ================= -->
     <div id="extra" class="tab-content">
-        <h2>🌿 拓展阅读 · 苏轼生平与诗词</h2>
-        <div class="poem-block">
-            <div class="poem-title">千古东坡</div>
-            <div class="poem-text">
-                苏轼（1037-1101），字子瞻，号东坡居士。北宋文豪，诗词文书画俱佳。一生坎坷，却将苦难化为旷达。代表作《定风波》《念奴娇·赤壁怀古》《水调歌头》等。
+        <div class="bio-section">
+            <h2>📜 千古东坡</h2>
+            <div class="bio-text" style="font-size:1.05rem; line-height:1.7; background:#fefaf5; padding:20px 28px; border-radius:28px; margin-bottom:25px;">
+                苏轼（1037年—1101年），字子瞻，号东坡居士，眉州眉山人。北宋文坛领袖，诗、词、文、书、画俱佳。他一生仕途坎坷，屡遭贬谪，却始终豁达乐观，将苦难化为诗篇。其词开豪放一派，与辛弃疾并称“苏辛”；散文与欧阳修并称“欧苏”，为“唐宋八大家”之一。代表作有《念奴娇·赤壁怀古》《定风波》《水调歌头》等。他不仅是一位伟大的文学家，更是一位心系百姓、热爱生活的智者。
             </div>
-        </div>
-        <div class="timeline">
-            <div class="event"><span class="year">1037年</span> 生于眉山</div>
-            <div class="event"><span class="year">1057年</span> 进士及第，名动京师</div>
-            <div class="event"><span class="year">1079年</span> 乌台诗案，贬谪黄州</div>
-            <div class="event"><span class="year">1082年</span> 作《定风波》《赤壁赋》</div>
-            <div class="event"><span class="year">1094年</span> 贬惠州，再贬儋州</div>
-            <div class="event"><span class="year">1101年</span> 北归途中病逝常州</div>
+            <div class="bio-stage">
+                <h3>🌱 少年成才</h3>
+                <p>苏轼生于书香门第，父亲苏洵发奋苦读，对其影响深远。十岁能文，二十岁随父进京应试，以一篇《刑赏忠厚之论》令主考官欧阳修惊叹，以为“避此人出一头地”。</p>
+            </div>
+            <div class="bio-stage">
+                <h3>📌 仕途起伏</h3>
+                <p>初入仕途，曾任凤翔、杭州等地地方官。因反对王安石新法，自请外放。后遭“乌台诗案”，被贬黄州，人生跌入谷底，却在此迎来创作巅峰。</p>
+            </div>
+            <div class="bio-stage">
+                <h3>🍃 黄州蜕变</h3>
+                <p>在黄州，他躬耕东坡，自号“东坡居士”。写下《定风波》《赤壁赋》《念奴娇·赤壁怀古》等千古名篇，完成从文人士大夫到哲人的蜕变。</p>
+            </div>
+            <div class="bio-stage">
+                <h3>🌊 晚年流放</h3>
+                <p>晚年再遭贬谪，远放惠州、儋州。年过六旬，在蛮荒之地办学育人，传播文明。遇赦北归时，百姓夹道欢迎。终老常州，临终自题：“问汝平生功业，黄州惠州儋州”。</p>
+            </div>
         </div>
 
-        <h3>📖 经典诗词选读（附解析）</h3>
-        <!-- 望江南 -->
+        <div class="timeline-title" style="font-size:1.8rem; border-left:5px solid #cbb181; padding-left:20px; margin:40px 0 25px;">⏳ 人生行旅 · 时间轴</div>
+        <div class="timeline">
+            <div class="event"><div class="year">1037年</div><div class="desc">出生于四川眉山。父亲苏洵早年游荡，二十七岁始发奋读书，对苏轼兄弟影响深远。</div></div>
+            <div class="event"><div class="year">1057年</div><div class="desc">21岁，与弟弟苏辙同榜进士及第。主考官欧阳修误以为其文为门生曾巩所作，为避嫌列为第二。后欧阳修赞其“读轼书，不觉汗出”，预言“三十年后无人道着我也”。</div></div>
+            <div class="event"><div class="year">1061年</div><div class="desc">任凤翔府签判。初涉政坛，关心民生，改革衙前役法，深受百姓爱戴。</div></div>
+            <div class="event"><div class="year">1071年</div><div class="desc">因反对王安石新法，自请外任杭州通判。在杭州留下大量诗篇，与民同乐，治理西湖。</div></div>
+            <div class="event"><div class="year">1074年</div><div class="desc">任密州知州。期间修葺超然台，写下《望江南·春未老》及《江城子·密州出猎》，“老夫聊发少年狂”开豪放词先声。</div></div>
+            <div class="event"><div class="year">1077年</div><div class="desc">任徐州知州。黄河决口，亲率军民抗洪，保全一城百姓。</div></div>
+            <div class="event"><div class="year">1079年</div><div class="desc">“乌台诗案”爆发，被囚禁百余日，险遭杀身之祸。后被贬为黄州团练副使，不得签书公事。</div></div>
+            <div class="event"><div class="year">1082年</div><div class="desc">在黄州迎来创作巅峰。写下《定风波·莫听穿林打叶声》《赤壁赋》《后赤壁赋》《念奴娇·赤壁怀古》等千古名篇。</div></div>
+            <div class="event"><div class="year">1084年</div><div class="desc">离开黄州，奉诏赴汝州。途中游览庐山，写下《题西林壁》。与王安石在金陵会面，二人尽释前嫌。</div></div>
+            <div class="event"><div class="year">1089年</div><div class="desc">再次知杭州。疏浚西湖，修筑苏堤，创办“安乐坊”——中国最早的公立医院，造福百姓。</div></div>
+            <div class="event"><div class="year">1094年</div><div class="desc">被贬惠州。年近六旬，依然关心民生，推广农业技术，写下“日啖荔枝三百颗，不辞长作岭南人”。</div></div>
+            <div class="event"><div class="year">1097年</div><div class="desc">再贬儋州（今海南）。在蛮荒之地办学育人，培养出海南第一位举人符确。至今儋州仍有“东坡书院”。</div></div>
+            <div class="event"><div class="year">1100年</div><div class="desc">遇赦北归。百姓夹道欢迎，他却已垂垂老矣。渡海时写下“云散月明谁点缀？天容海色本澄清”。</div></div>
+            <div class="event"><div class="year">1101年</div><div class="desc">病逝于常州。临终自题：“问汝平生功业，黄州惠州儋州”。享年六十五岁。</div></div>
+        </div>
+
+        <div class="poetry-title" style="font-size:1.8rem; border-left:5px solid #cbb181; padding-left:20px; margin:50px 0 30px;">📖 经典诗词赏析</div>
+
+        <!-- 望江南·春未老 -->
         <div class="poem-card">
             <div class="poem-name">《望江南·春未老》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">
-                春未老，风细柳斜斜。试上超然台上看，半壕春水一城花。烟雨暗千家。<br>
-                寒食后，酒醒却咨嗟。休对故人思故国，且将新火试新茶。诗酒趁年华。
-            </div>
-            <div class="poem-note">解析：登超然台所见暮春景色，虽有乡愁却自我宽解——“诗酒趁年华”，珍惜当下，豪放旷达。</div>
-        </div>
-        <div class="poem-card">
-            <div class="poem-name">《饮湖上初晴后雨》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">水光潋滟晴方好，山色空蒙雨亦奇。欲把西湖比西子，淡妆浓抹总相宜。</div>
-            <div class="poem-note">解析：西湖晴雨皆美，以美人喻西湖，新颖别致，体现诗人对自然的热爱。</div>
-        </div>
-        <div class="poem-card">
-            <div class="poem-name">《题西林壁》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。</div>
-            <div class="poem-note">解析：借庐山说理，启示人们跳出局限才能看清真相，充满哲理。</div>
-        </div>
-        <div class="poem-card">
-            <div class="poem-name">《惠崇春江晚景》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">竹外桃花三两枝，春江水暖鸭先知。蒌蒿满地芦芽短，正是河豚欲上时。</div>
-            <div class="poem-note">解析：题画诗，捕捉早春生机，“春江水暖鸭先知”成为千古名句。</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">春未老，风细柳斜斜。<br>试上超然台上看，半壕春水一城花。<br>烟雨暗千家。<br>寒食后，酒醒却咨嗟。<br>休对故人思故国，且将新火试新茶。<br>诗酒趁年华。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 这首词写于密州超然台。上片写登台所见暮春景色：春水、繁花、烟雨，意境朦胧。下片触景生情，寒食节后乡愁泛起，但苏轼随即自我宽解——“休对故人思故国”，以“新火试新茶”排遣愁绪，最后发出“诗酒趁年华”的豪语。全词既有时光流逝的无奈，更有把握当下的旷达。</div>
         </div>
         <div class="poem-card">
             <div class="poem-name">《定风波·莫听穿林打叶声》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">莫听穿林打叶声，何妨吟啸且徐行……一蓑烟雨任平生……也无风雨也无晴。</div>
-            <div class="poem-note">解析：核心人生观——不为外物所扰，顺境逆境皆从容，微课重点讲解。</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">莫听穿林打叶声，何妨吟啸且徐行。<br>竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。<br>料峭春风吹酒醒，微冷，山头斜照却相迎。<br>回首向来萧瑟处，归去，也无风雨也无晴。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 此词作于黄州贬所。途中遇雨，同行皆狼狈，唯苏轼泰然处之。词中以“莫听穿林打叶声”开篇，展现不为外物所扰的定力。“一蓑烟雨任平生”道出面对人生风雨的从容。“也无风雨也无晴”更是哲理升华：人生顺逆皆过客，心中平静即晴天。全词即景抒情，将自然风雨与人生际遇融为一体，是苏轼旷达人格的写照。</div>
         </div>
         <div class="poem-card">
             <div class="poem-name">《水调歌头·明月几时有》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">但愿人长久，千里共婵娟。</div>
-            <div class="poem-note">解析：中秋词绝唱，将人间悲欢与自然圆缺融合，旷达而有情致。</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">明月几时有？把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。<br>转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 丙辰中秋，苏轼欢饮达旦，兼怀子由。此词上片问天，下片问月，最后以“人有悲欢离合，月有阴晴圆缺”自解，发出“但愿人长久，千里共婵娟”的美好祝愿。全词意境豪放阔大，情感深沉豁达，被誉为“中秋词之千古绝唱”。</div>
         </div>
         <div class="poem-card">
             <div class="poem-name">《念奴娇·赤壁怀古》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">大江东去，浪淘尽，千古风流人物……</div>
-            <div class="poem-note">解析：豪放词巅峰，气势磅礴，人生如梦却依然豪迈。</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">大江东去，浪淘尽，千古风流人物。故垒西边，人道是，三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。<br>遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间，樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一尊还酹江月。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 此词是苏轼豪放词的代表作。上片以“大江东去”起兴，描绘赤壁壮丽景色，引出千古英雄。下片聚焦周瑜，写其青年得志、功成名就，反衬自己老大无成。结尾“人生如梦”并非消极，而是看透世事后的旷达。全词气势磅礴，格调雄浑，被誉为“千古绝唱”。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《饮湖上初晴后雨》</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">水光潋滟晴方好，山色空蒙雨亦奇。<br>欲把西湖比西子，淡妆浓抹总相宜。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 此诗是苏轼在杭州通判时所作。前两句写西湖晴雨皆美：晴天波光粼粼，雨天山色迷蒙。后两句将西湖比作西施，无论淡妆还是浓抹都恰到好处。这一比喻新奇贴切，成为千古绝唱，也让“西子湖”成为西湖的别称。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《题西林壁》</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">横看成岭侧成峰，远近高低各不同。<br>不识庐山真面目，只缘身在此山中。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 元丰七年（1084年），苏轼由黄州贬所改迁汝州，途中游览庐山。这首诗借庐山形象说理：从不同角度看山，形态各异。之所以看不清整体面貌，是因为自己身在山中。它启示人们要跳出局限，全面观察事物。全诗含蓄蕴藉，充满哲理，是宋诗“理趣”的代表作。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《惠崇春江晚景》</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">竹外桃花三两枝，春江水暖鸭先知。<br>蒌蒿满地芦芽短，正是河豚欲上时。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 这是苏轼为好友惠崇的画作《春江晚景》所题的画赞。诗人通过桃花、春江、鸭子、蒌蒿、芦芽等意象，生动再现了早春的生机。“春江水暖鸭先知”一句，以鸭子的触觉感知春天，细腻传神，被广泛引用。全诗虚实结合，展现了诗人敏锐的观察力。</div>
         </div>
         <div class="poem-card">
             <div class="poem-name">《六月二十日夜渡海》</div>
-            <div class="poem-author">宋·苏轼</div>
-            <div class="poem-full">九死南荒吾不恨，兹游奇绝冠平生。</div>
-            <div class="poem-note">解析：从海南遇赦北归，将苦难视为奇绝经历，晚年境界超然。</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">参横斗转欲三更，苦雨终风也解晴。<br>云散月明谁点缀？天容海色本澄清。<br>空余鲁叟乘桴意，粗识轩辕奏乐声。<br>九死南荒吾不恨，兹游奇绝冠平生。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 元符三年（1100年），苏轼遇赦从海南岛渡海北归。此诗写于归途。前两句写深夜渡海，风雨终于停止，天空放晴。三、四句以“云散月明”比喻政治污点被洗清，“天容海色本澄清”象征自己品格本自清白。末联“九死南荒吾不恨，兹游奇绝冠平生”更是将苦难视为奇绝经历，体现了苏轼晚年超然物外的境界。</div>
         </div>
-        <div style="background:#fefaf5; border-radius: 24px; padding: 20px; margin: 20px 0; text-align: center;">
-            🌟 本拓展资源与微课《定风波》配套，扫码即可访问全站。含完整生平、诗词赏析及习题自测。
+        <div class="poem-card">
+            <div class="poem-name">《江城子·乙卯正月二十日夜记梦》</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉。纵使相逢应不识，尘满面，鬓如霜。<br>夜来幽梦忽还乡，小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处，明月夜，短松冈。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 此词悼念亡妻王弗，是悼亡词的巅峰之作。“十年生死两茫茫”写出生死相隔的痛楚，“小轩窗，正梳妆”梦中相逢的细节催人泪下。全词沉痛深挚，真挚动人。</div>
+        </div>
+        <div class="poem-card">
+            <div class="poem-name">《浣溪沙·游蕲水清泉寺》</div>
+            <div class="poem-author">宋 · 苏轼</div>
+            <div class="poem-full">山下兰芽短浸溪，松间沙路净无泥，潇潇暮雨子规啼。<br>谁道人生无再少？门前流水尚能西！休将白发唱黄鸡。</div>
+            <div class="poem-note"><strong>🌿 解析：</strong> 元丰五年（1082年），苏轼在黄州。游清泉寺，见溪水西流，触发感慨。“谁道人生无再少？”一反传统悲秋叹老之调，表现了积极乐观、昂扬向上的人生态度。“休将白发唱黄鸡”与《定风波》中的“谁怕”遥相呼应。</div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center; font-size: 1rem; color: #9b7b54; padding: 20px 0;">
+            🌟 微课《定风波》拓展阅读 · 像苏轼一样，从容面对人生风雨
         </div>
     </div>
     <div class="footer">
@@ -503,14 +580,11 @@
 </div>
 
 <script>
-    // 通用交互：点击“核对答案”显示对应题目的答案和解析
     const answerMap = {
-        // 预习
         pre1: { correct: "B", explanation: "解析：“莫听”“何妨”表现了对风雨的从容与豁达，不为所扰。" },
         pre2: { correct: "B", explanation: "解析：“烟雨”一语双关，既指自然风雨，也喻仕途坎坷、人生困境。" },
         pre3: { correct: "A", explanation: "解析：斜阳相迎暗示困境中必有转机，体现辩证思维。" },
         pre4: { correct: "B", explanation: "解析：无风雨无晴，是宠辱不惊、超然物外的精神境界。" },
-        // 课后
         post1: { correct: "C", explanation: "解析：“山头斜照却相迎”既有写景又有象征意义，暗示希望，因此C项错误。" },
         post2: { correct: "A", explanation: "解析：全词借途中遇雨之景，抒发对人生风雨的感悟，属于借景抒情。" },
         post3: { correct: "A", explanation: "解析：《念奴娇·赤壁怀古》与《赤壁赋》同作于黄州贬所。" },
@@ -521,47 +595,38 @@
     document.querySelectorAll('.btn-check').forEach(btn => {
         btn.addEventListener('click', function() {
             const qId = this.getAttribute('data-q');
-            const selectedRadio = document.querySelector(`input[name="${qId}"]:checked`);
-            const feedbackDiv = document.getElementById(`fb-${qId}`);
-            if (!feedbackDiv) return;
-            if (!selectedRadio) {
-                feedbackDiv.innerHTML = '<span>⚠️ 请先选择一个选项。</span>';
-                feedbackDiv.classList.add('show');
-                feedbackDiv.classList.remove('correct', 'wrong');
+            const selected = document.querySelector(`input[name="${qId}"]:checked`);
+            const fbDiv = document.getElementById(`fb-${qId}`);
+            if (!fbDiv) return;
+            if (!selected) {
+                fbDiv.innerHTML = '<span>⚠️ 请先选择一个选项。</span>';
+                fbDiv.classList.add('show');
+                fbDiv.classList.remove('correct', 'wrong');
                 return;
             }
-            const userValue = selectedRadio.value;
-            const correctInfo = answerMap[qId];
-            if (correctInfo) {
-                const isCorrect = (userValue === correctInfo.correct);
-                const correctLetter = correctInfo.correct;
-                let answerText = '';
-                if (qId.startsWith('pre')) {
-                    const optMap = {A:'A',B:'B',C:'C',D:'D'};
-                    answerText = `正确答案：${correctLetter}。${correctInfo.explanation}`;
-                } else {
-                    answerText = `正确答案：${correctLetter}。${correctInfo.explanation}`;
-                }
-                feedbackDiv.innerHTML = isCorrect ? `✅ 回答正确！ ${answerText}` : `❌ 回答错误。 ${answerText}`;
-                feedbackDiv.classList.add('show');
-                feedbackDiv.classList.remove('correct', 'wrong');
-                if (isCorrect) feedbackDiv.classList.add('correct');
-                else feedbackDiv.classList.add('wrong');
+            const info = answerMap[qId];
+            if (info) {
+                const isCorrect = (selected.value === info.correct);
+                const msg = isCorrect ? `✅ 回答正确！ 正确答案：${info.correct}。${info.explanation}` : `❌ 回答错误。 正确答案：${info.correct}。${info.explanation}`;
+                fbDiv.innerHTML = msg;
+                fbDiv.classList.add('show');
+                fbDiv.classList.remove('correct', 'wrong');
+                if (isCorrect) fbDiv.classList.add('correct');
+                else fbDiv.classList.add('wrong');
             } else {
-                feedbackDiv.innerHTML = '暂未配置答案，请参考老师讲解。';
-                feedbackDiv.classList.add('show');
+                fbDiv.innerHTML = '暂未配置答案，请参考老师讲解。';
+                fbDiv.classList.add('show');
             }
         });
     });
 
-    // 选项卡切换
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabBtns.forEach(btn => {
+    const btns = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    btns.forEach(btn => {
         btn.addEventListener('click', () => {
             const tabId = btn.getAttribute('data-tab');
-            tabContents.forEach(content => content.classList.remove('active'));
-            tabBtns.forEach(b => b.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             btn.classList.add('active');
         });
